@@ -2,11 +2,7 @@
 
 SQUIC is a second-order, L1-regularized maximum likelihood method for performant large-scale sparse precision matrix estimation. The presented source code is the SQUIC shared library (libSQUIC) intended for Linux and Mac OS.
 
-The following interface packages for SQUIC are available:
-
-- R package SQUIC_R (see )
-- Python package SQUIC_Python (see )
-- Matlab interface SQUIC_Matlab (see )
+The following interface packages for SQUIC can be found here: https://www.gitlab.ci.inf.usi.ch/SQUIC 
 
 _Note: For all note interface packages, libSQUIC is required. Precompiled versions of libSQUIC for Mac and Linux are available and are ready to use._ 
 
