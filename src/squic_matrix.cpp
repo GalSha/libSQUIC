@@ -1518,7 +1518,7 @@ void SQUIC::run_core(double Lambda, SparseMatrix *LambdaMatrix, double drop_tol,
 		fflush(stdout);
 	}
 	if (RunTimeConfig.verbose == 0) {
-		MSG("time=%0.2e nnz(X,W)/p=[%0.2e %0.2e]\n\n",  Stat.time_total, double(X.nnz) / double(p), double(W.nnz) / double(p));
+		MSG("time=%0.2e nnz(X,W)/p=[%0.2e %0.2e]\n",  Stat.time_total, double(X.nnz) / double(p), double(W.nnz) / double(p));
 		fflush(stdout);
 	}
 
