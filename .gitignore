@@ -26,3 +26,4 @@ SuiteSparse-4.5.4
 .DS_Store
 .vscode/*
 .DS_Store?
+.ignore
