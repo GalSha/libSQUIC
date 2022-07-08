@@ -11,6 +11,11 @@ include(FortranCInterface)
 FortranCInterface_VERIFY(CXX)
 unset(CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES)
 
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+
 # Check for MKL root
 if("$ENV{MKLROOT}" STREQUAL "")
     message(FATAL_ERROR "MKLROOT is not set. Please source the Intel MKL mklvars.sh file.")
@@ -25,9 +30,11 @@ set(SS_DIR "${CMAKE_SOURCE_DIR}/extern/suitesparse")
 set(MKL_DIR $ENV{MKLROOT})
 set(INSTALL_DIR $ENV{HOME})
 
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
 # Base Flags
-set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS}-w -O3 -fPIC -D_LONG_INTEGER_ -std=c++11")
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}-w -O3 -fPIC -fimplicit-none")  
+set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS}-w -O3 -D_LONG_INTEGER_")
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}-w -O3 -fimplicit-none")
 
 # Intel Flags 
 # Link flags & Compiler Options from https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onemkl/link-line-advisor.html
@@ -46,7 +53,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES Clang)
 endif()
 
 #Create shared library SQUIC
-add_library(SQUIC SHARED
+add_library(SQUIC
 	src/squic.cpp  
 	src/bninv.cpp 
 	src/cholesky.cpp 
