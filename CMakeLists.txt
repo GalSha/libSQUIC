@@ -28,9 +28,9 @@ endif()
 # Set directories
 set(SS_DIR "${CMAKE_SOURCE_DIR}/extern/suitesparse")
 set(MKL_DIR $ENV{MKLROOT})
-set(INSTALL_DIR $ENV{HOME})
-
+set(INSTALL_DIR "$ENV{HOME}/SQUIC/" CACHE STRING "INSTALL DIR")
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
 
 # Base Flags
 set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS}-w -O3 -D_LONG_INTEGER_")
@@ -148,17 +148,16 @@ set_target_properties(SQUIC PROPERTIES
 	MACOSX_RPATH OFF
 )
 
-# Install library always in the home driection
-install(TARGETS SQUIC 
-DESTINATION ${INSTALL_DIR}
+# Install library by default in the home directory
+install(TARGETS SQUIC LIBRARY DESTINATION ${INSTALL_DIR}
 )
-
+#DESTINATION ${INSTALL_DIR}/lib
 message("===============================================================================")
 message("==========================Configuration Summary================================")
 message("===============================================================================")
 message("CMAKE_CXX_FLAGS          : " ${CMAKE_CXX_FLAGS})
 message("CMAKE_Fortran_FLAGS      : " ${CMAKE_Fortran_FLAGS})
-message("Intall Location          : " ${INSTALL_DIR})
+message("Install Location          : " ${INSTALL_DIR})
 message("INTEL MKL Location       : " ${MKL_DIR})
 message("SuitSparse Location      : " ${SS_DIR})
 message("Build Sys.               : " "${CMAKE_SYSTEM_NAME}-CXX${CMAKE_CXX_COMPILER_ID}${CMAKE_CXX_COMPILER_VERSION}-F${CMAKE_Fortran_COMPILER_ID}${CMAKE_Fortran_COMPILER_VERSION}")
