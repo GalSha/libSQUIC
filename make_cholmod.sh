@@ -47,20 +47,9 @@ read -p "Press any key to resume ..."
 make library AUTOCC="no" CC="$CC" CXX="$CXX" JOBS="1" INSTALL="$INSTDIR" MY_METIS_LIB="$LIBDIR/libmetis.a" MY_METIS_INC="$INCDIR" CUDA="no"      
 
 echo -e "${GREEN}>> Copy files ..  ${NC}"
-cp AMD/Lib/*.a $LIBDIR
-cp AMD/Include/*.h $INCDIR
-
-cp CAMD/Lib/*.a $LIBDIR
-cp CAMD/Include/*.h $INCDIR
-
-cp CCOLAMD/Lib/*.a $LIBDIR
-cp CCOLAMD/Include/*.h $INCDIR
 
 cp CHOLMOD/Lib/*.a $LIBDIR
 cp CHOLMOD/Include/*.h $INCDIR
-
-cp COLAMD/Lib/*.a $LIBDIR
-cp COLAMD/Include/*.h $INCDIR
 
 cp SuiteSparse_config/*.a $LIBDIR
 cp SuiteSparse_config/*.h $INCDIR
