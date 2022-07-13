@@ -64,8 +64,13 @@ cd build
 cmake ..
 make -j12
 ```
-
-Step 4: Install the libSQUIC library in the default location (i.e., ``~/``) using the command:
+By default a dynamic library will be generated, if you want to generate a static library plase modify
+cmake command with:
+```aungular2
+cmake ../ -DBUILD_SHARED_LIBS=OFF
+```
+Step 4: Install the libSQUIC library (default location: ``~/SQUIC``, use -DINSTALL_DIR to change it)
+using the command:
 
 ```angular2
 make install 

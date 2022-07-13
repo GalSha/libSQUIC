@@ -11,6 +11,11 @@ include(FortranCInterface)
 FortranCInterface_VERIFY(CXX)
 unset(CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES)
 
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+
 # Check for MKL root
 if("$ENV{MKLROOT}" STREQUAL "")
     message(FATAL_ERROR "MKLROOT is not set. Please source the Intel MKL mklvars.sh file.")
@@ -23,11 +28,13 @@ endif()
 # Set directories
 set(SS_DIR "${CMAKE_SOURCE_DIR}/extern/suitesparse")
 set(MKL_DIR $ENV{MKLROOT})
-set(INSTALL_DIR $ENV{HOME})
+set(INSTALL_DIR "$ENV{HOME}/SQUIC/" CACHE STRING "INSTALL DIR")
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
 
 # Base Flags
-set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS}-w -O3 -fPIC -D_LONG_INTEGER_ -std=c++11")
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}-w -O3 -fPIC -fimplicit-none")  
+set(CMAKE_CXX_FLAGS     "${CMAKE_CXX_FLAGS}-w -O3 -D_LONG_INTEGER_")
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS}-w -O3 -fimplicit-none")
 
 # Intel Flags 
 # Link flags & Compiler Options from https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onemkl/link-line-advisor.html
@@ -46,7 +53,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES Clang)
 endif()
 
 #Create shared library SQUIC
-add_library(SQUIC SHARED
+add_library(SQUIC
 	src/squic.cpp  
 	src/bninv.cpp 
 	src/cholesky.cpp 
@@ -95,10 +102,6 @@ endif()
 target_link_libraries(SQUIC PRIVATE 
 	${SS_DIR}/lib/libcholmod.a 
 	${SS_DIR}/lib/libsuitesparseconfig.a  
-	${SS_DIR}/lib/libcolamd.a 
-	${SS_DIR}/lib/libamd.a  
-	${SS_DIR}/lib/libcamd.a 
-	${SS_DIR}/lib/libccolamd.a 
 	${SS_DIR}/lib/libmetis.a  
 )
 target_include_directories(SQUIC PRIVATE ${SS_DIR}/include)
@@ -145,17 +148,16 @@ set_target_properties(SQUIC PROPERTIES
 	MACOSX_RPATH OFF
 )
 
-# Install library always in the home driection
-install(TARGETS SQUIC 
-DESTINATION ${INSTALL_DIR}
+# Install library by default in the home directory
+install(TARGETS SQUIC LIBRARY DESTINATION ${INSTALL_DIR}
 )
-
+#DESTINATION ${INSTALL_DIR}/lib
 message("===============================================================================")
 message("==========================Configuration Summary================================")
 message("===============================================================================")
 message("CMAKE_CXX_FLAGS          : " ${CMAKE_CXX_FLAGS})
 message("CMAKE_Fortran_FLAGS      : " ${CMAKE_Fortran_FLAGS})
-message("Intall Location          : " ${INSTALL_DIR})
+message("Install Location          : " ${INSTALL_DIR})
 message("INTEL MKL Location       : " ${MKL_DIR})
 message("SuitSparse Location      : " ${SS_DIR})
 message("Build Sys.               : " "${CMAKE_SYSTEM_NAME}-CXX${CMAKE_CXX_COMPILER_ID}${CMAKE_CXX_COMPILER_VERSION}-F${CMAKE_Fortran_COMPILER_ID}${CMAKE_Fortran_COMPILER_VERSION}")
