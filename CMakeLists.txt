@@ -102,6 +102,10 @@ endif()
 target_link_libraries(SQUIC PRIVATE 
 	${SS_DIR}/lib/libcholmod.a 
 	${SS_DIR}/lib/libsuitesparseconfig.a  
+	${SS_DIR}/lib/libcolamd.a 
+	${SS_DIR}/lib/libamd.a  
+	${SS_DIR}/lib/libcamd.a 
+	${SS_DIR}/lib/libccolamd.a 
 	${SS_DIR}/lib/libmetis.a  
 )
 target_include_directories(SQUIC PRIVATE ${SS_DIR}/include)
