@@ -27,3 +27,4 @@ SuiteSparse-4.5.4
 .vscode/*
 .DS_Store?
 .ignore
+gitignore_*
