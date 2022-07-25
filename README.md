@@ -1,43 +1,21 @@
 # SQUIC Release Source
-SQUIC is a second-order, L1-regularized maximum likelihood method for performant large-scale sparse precision matrix estimation. This code is a shared library 'libSQUIC', intended for Linux and Mac OS. The code is written in C++ and is parallelized with OpenMP.
+SQUIC is a second-order, L1-regularized maximum likelihood method for performant large-scale sparse precision matrix estimation. This code is packaged as a shared library 'libSQUIC', intended for Linux and Mac OS. It is written in C++ and is parallelized with OpenMP. This work is a synthesis of the previous publications listed [References](#References).
 
-
-[![PyPI Status](https://badge.fury.io/py/squic.svg)](https://badge.fury.io/py/squic) 
-[![squic python compatibility](https://img.shields.io/pypi/pyversions/squic.svg)](https://pypi.python.org/pypi/squic) 
-#[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/amaiya/ktrain/blob/master/LICENSE) 
-#[![Downloads](https://pepy.tech/badge/ktrain)](https://pepy.tech/project/ktrsquicain)
-#[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/ktrain_ai.svg?style=social&label=Follow%20%40ktrain_ai)](https://twitter.com/ktrain_ai)
-
-
-
-The shared library can be used directly from the precompiled version see XXXXX, or compiled from source. Additional Python and R APIs can be found here: https://www.gitlab.ci.inf.usi.ch/SQUIC. Note, for all API, the hared library 'libSQUIC' is required.
-
-
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1iQB5hz07UMd5C1PR3w3xM3306BVcFGiO?usp=sharing)
-
-
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1iQB5hz07UMd5C1PR3w3xM3306BVcFGiO?usp=sharing)
-
-
+The shared library can be used directly from the precompiled version see ``precompiled\`` directory, or compiled from source. Additional Python and R APIs can be found here: https://www.gitlab.ci.inf.usi.ch/SQUIC. Note, for all APIs, the shared library ``ibSQUIC.*`` is required.
 
 ## Precompiled libSQUIC
+The simplest way to start using SQUIC is to use the precompiled shared library ``libSQUIC.*``. The precompiled distributions are listed in the folder ``precompiled/``. All distributions, are self-contained except for OpenMP, which needs to be installed. This can be done via a standard package manager; e.g., for Ubuntu: ``sudo apt-get install libomp-dev``, or  Mac: ``brew install libomp``. The shared libraryexposes a single function called ``SQUIC_CPP``, see ``include\SQUIC.h`` for further details. 
 
-The precompiled libSQUIC distributions are listed in the folder ``/precompiled/``. All distributions require OpenMP to be installed, which can be done via a standard package manager; e.g., for Ubuntu: ``sudo apt-get install libomp-dev``, or  Mac: ``brew install libomp``.  
+## Compile from Source
+The shared library can be compiled from source by first fufilling the [Prerequesits](#Prerequesits) listed below and following the [Compilation & Instaation](#Compile&Install) instruction. 
 
-_Note: The default location of libSQUIC for the different interface packages is the home directory; i.e., ``~/``. For further details, refer to the respective interface package._
-
-## Installation from Source
-
-### Requirements :
+### Prerequesits
 
 For Mac:
-- CMake (>3.9): For example using homebrew ``brew install cmake``
+- CMake (>3.9): For example using homebrew ``brew install cmake``.
 - Intel MKL libraries: [Download](https://software.intel.com/content/www/us/en/develop/tools/oneapi/base-toolkit/download.html?operatingsystem=mac&distributions=webdownload&options=online).
-- OpenMP: For example using homebrew ``brew install libomp`` 
+- OpenMP: For example using homebrew ``brew install libomp`` .
 - C++/C Compilers (Clang): This is the default; nothing is required.
-- Fortran Compiler (GNU): For example, using homebrew ``brew install gcc``
 
 For Linux:
 - CMake (>3.9)
@@ -46,7 +24,7 @@ For Linux:
 - C++/C/Fortran Compilers (GNU)
 
 
-### Compile & Install :
+### Compile & Install
 
 Step 0: Git clone the repository.
 
@@ -55,7 +33,6 @@ Step 1: After installing Intel MKL, the evironment variable MKLROOT must be set 
 source /opt/intel/mkl/bin/mklvars.sh intel64  # or 
 source /opt/intel/oneapi/mkl/latest/env/vars.sh  intel64
 ```
-
 Step 2: Compile CHOLMOD and related libraries from SuiteSparse (version 4.5.4 is provided) by the script:
 	
 ```angular2
@@ -84,8 +61,49 @@ make install
 
 #### References
 
-[1] [Bollhöfer, M., Eftekhari, A., Scheidegger, S. and Schenk, O., 2019. Large-scale sparse inverse covariance matrix estimation. SIAM Journal on Scientific Computing, 41(1), pp.A380-A401.](https://epubs.siam.org/doi/abs/10.1137/17M1147615?journalCode=sjoce3)
+[1] [Bollhöfer, M., Eftekhari, A., Scheidegger, S. and Schenk, O., 2019. Large-scale sparse inverse covariance matrix estimation. SIAM Journal on Scientific Computing, 41(1), pp.A380-A401.](https://epubs.siam.org/doi/abs/10.1137/17M1147615)
 
 [2] [Eftekhari, A., Bollhöfer, M. and Schenk, O., 2018, November. Distributed memory sparse inverse covariance matrix estimation on high-performance computing architectures. In SC18: International Conference for High Performance Computing, Networking, Storage and Analysis (pp. 253-264). IEEE.](https://dl.acm.org/doi/10.5555/3291656.3291683)
 
 [3] [Eftekhari, A., Pasadakis, D., Bollhöfer, M., Scheidegger, S. and Schenk, O., 2021. Block-Enhanced PrecisionMatrix Estimation for Large-Scale Datasets. Journal of Computational Science, p. 101389.](https://www.sciencedirect.com/science/article/pii/S1877750321000776)
+
+
+#### Citation
+Please cite our publications if it helps your research:
+
+```
+@article{doi:10.1137/17M1147615,
+	author = {Bollh\"{o}fer, Matthias and Eftekhari, Aryan and Scheidegger, Simon and Schenk, Olaf},
+	journal = {SIAM Journal on Scientific Computing},
+	number = {1},
+	pages = {A380-A401},
+	title = {Large-scale Sparse Inverse Covariance Matrix Estimation},
+	url = {https://doi.org/10.1137/17M1147615},
+	volume = {41},
+	year = {2019}
+}
+
+@inproceedings{10.5555/3291656.3291683,
+    author = {Eftekhari, Aryan and Bollh\"{o}fer, Matthias and Schenk, Olaf},
+    title = {Distributed Memory Sparse Inverse Covariance Matrix Estimation on High-Performance Computing Architectures},
+    year = {2018},
+    publisher = {IEEE Press},
+    booktitle = {Proceedings of the International Conference for High Performance Computing, Networking, Storage, and Analysis},
+    articleno = {20},
+    numpages = {12},
+    location = {Dallas, Texas},
+    series = {SC '18}
+}
+
+@article{EFTEKHARI2021101389,
+	author = {Aryan Eftekhari and Dimosthenis Pasadakis and Matthias Bollh{\"o}fer and Simon Scheidegger and Olaf Schenk},
+	doi = {https://doi.org/10.1016/j.jocs.2021.101389},
+	issn = {1877-7503},
+	journal = {Journal of Computational Science},
+	pages = {101389},
+	title = {Block-enhanced precision matrix estimation for large-scale datasets},
+	volume = {53},
+	year = {2021}
+}
+```
+
