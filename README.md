@@ -1,23 +1,25 @@
 # SQUIC Release Source
+SQUIC is a second-order, L1-regularized maximum likelihood method for performant large-scale sparse precision matrix estimation. This code is a shared library 'libSQUIC', intended for Linux and Mac OS. The code is written in C++ and is parallelized with OpenMP.
 
-SQUIC is a second-order, L1-regularized maximum likelihood method for performant large-scale sparse precision matrix estimation. The presented source code is the SQUIC shared library (libSQUIC) intended for Linux and Mac OS.
 
-The following interface packages for SQUIC can be found here: https://www.gitlab.ci.inf.usi.ch/SQUIC 
+[![PyPI Status](https://badge.fury.io/py/squic.svg)](https://badge.fury.io/py/squic) 
+[![squic python compatibility](https://img.shields.io/pypi/pyversions/squic.svg)](https://pypi.python.org/pypi/squic) 
+#[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/amaiya/ktrain/blob/master/LICENSE) 
+#[![Downloads](https://pepy.tech/badge/ktrain)](https://pepy.tech/project/ktrsquicain)
+#[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/ktrain_ai.svg?style=social&label=Follow%20%40ktrain_ai)](https://twitter.com/ktrain_ai)
 
-_Note: For all note interface packages, libSQUIC is required. Precompiled versions of libSQUIC for Mac and Linux are available and are ready to use._ 
+
+
+The shared library can be used directly from the precompiled version see XXXXX, or compiled from source. Additional Python and R APIs can be found here: https://www.gitlab.ci.inf.usi.ch/SQUIC. Note, for all API, the hared library 'libSQUIC' is required.
+
 
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1iQB5hz07UMd5C1PR3w3xM3306BVcFGiO?usp=sharing)
 
 
 
-#### References
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1iQB5hz07UMd5C1PR3w3xM3306BVcFGiO?usp=sharing)
 
-[1] [Bollhöfer, M., Eftekhari, A., Scheidegger, S. and Schenk, O., 2019. Large-scale sparse inverse covariance matrix estimation. SIAM Journal on Scientific Computing, 41(1), pp.A380-A401.](https://epubs.siam.org/doi/abs/10.1137/17M1147615?journalCode=sjoce3)
-
-[2] [Eftekhari, A., Bollhöfer, M. and Schenk, O., 2018, November. Distributed memory sparse inverse covariance matrix estimation on high-performance computing architectures. In SC18: International Conference for High Performance Computing, Networking, Storage and Analysis (pp. 253-264). IEEE.](https://dl.acm.org/doi/10.5555/3291656.3291683)
-
-[3] [Eftekhari, A., Pasadakis, D., Bollhöfer, M., Scheidegger, S. and Schenk, O., 2021. Block-Enhanced PrecisionMatrix Estimation for Large-Scale Datasets. Journal of Computational Science, p. 101389.](https://www.sciencedirect.com/science/article/pii/S1877750321000776)
 
 
 ## Precompiled libSQUIC
@@ -79,3 +81,11 @@ using the command:
 ```angular2
 make install 
 ```
+
+#### References
+
+[1] [Bollhöfer, M., Eftekhari, A., Scheidegger, S. and Schenk, O., 2019. Large-scale sparse inverse covariance matrix estimation. SIAM Journal on Scientific Computing, 41(1), pp.A380-A401.](https://epubs.siam.org/doi/abs/10.1137/17M1147615?journalCode=sjoce3)
+
+[2] [Eftekhari, A., Bollhöfer, M. and Schenk, O., 2018, November. Distributed memory sparse inverse covariance matrix estimation on high-performance computing architectures. In SC18: International Conference for High Performance Computing, Networking, Storage and Analysis (pp. 253-264). IEEE.](https://dl.acm.org/doi/10.5555/3291656.3291683)
+
+[3] [Eftekhari, A., Pasadakis, D., Bollhöfer, M., Scheidegger, S. and Schenk, O., 2021. Block-Enhanced PrecisionMatrix Estimation for Large-Scale Datasets. Journal of Computational Science, p. 101389.](https://www.sciencedirect.com/science/article/pii/S1877750321000776)
