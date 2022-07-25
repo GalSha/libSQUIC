@@ -7,13 +7,17 @@ The following interface packages for SQUIC can be found here: https://www.gitlab
 _Note: For all note interface packages, libSQUIC is required. Precompiled versions of libSQUIC for Mac and Linux are available and are ready to use._ 
 
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1iQB5hz07UMd5C1PR3w3xM3306BVcFGiO?usp=sharing)
+
+
+
 #### References
 
 [1] [Bollhöfer, M., Eftekhari, A., Scheidegger, S. and Schenk, O., 2019. Large-scale sparse inverse covariance matrix estimation. SIAM Journal on Scientific Computing, 41(1), pp.A380-A401.](https://epubs.siam.org/doi/abs/10.1137/17M1147615?journalCode=sjoce3)
 
 [2] [Eftekhari, A., Bollhöfer, M. and Schenk, O., 2018, November. Distributed memory sparse inverse covariance matrix estimation on high-performance computing architectures. In SC18: International Conference for High Performance Computing, Networking, Storage and Analysis (pp. 253-264). IEEE.](https://dl.acm.org/doi/10.5555/3291656.3291683)
 
-[3] [Eftekhari, A., Pasadakis, D., Bollhöfer, M., Scheidegger, S. and Schenk, O., 2021. Block-Enhanced PrecisionMatrix                 Estimation for Large-Scale Datasets. Journal of Computational Science, p. 101389.](https://www.sciencedirect.com/science/article/pii/S1877750321000776)
+[3] [Eftekhari, A., Pasadakis, D., Bollhöfer, M., Scheidegger, S. and Schenk, O., 2021. Block-Enhanced PrecisionMatrix Estimation for Large-Scale Datasets. Journal of Computational Science, p. 101389.](https://www.sciencedirect.com/science/article/pii/S1877750321000776)
 
 
 ## Precompiled libSQUIC
