@@ -28,7 +28,7 @@ endif()
 # Set directories
 set(SS_DIR "${CMAKE_SOURCE_DIR}/extern/suitesparse")
 set(MKL_DIR $ENV{MKLROOT})
-set(INSTALL_DIR "$ENV{HOME}/SQUIC/" CACHE STRING "INSTALL DIR")
+set(INSTALL_DIR "$ENV{HOME}" CACHE STRING "INSTALL DIR")
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 
