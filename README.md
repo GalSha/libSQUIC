@@ -1,15 +1,34 @@
 # SQUIC Release Source
-SQUIC is a second-order, L1-regularized maximum likelihood method for performant large-scale sparse precision matrix estimation. This code is packaged as a shared library 'libSQUIC', intended for Linux and Mac OS. It is written in C++ and is parallelized with OpenMP. This work is a synthesis of the previous publications listed [References](#References).
+This repository contains the official code for SQUIC, a second-order L1-regularized maximum likelihood method 
+for performant large-scale sparse precision matrix estimation. The code is packaged as the shared library 
+``libSQUIC**``, intended for Linux and Mac OS. It is written in C++ and is parallelized with OpenMP. This 
+work is a synthesis of the previous publications listed in [References](#References).
 
-The shared library can be used directly from the precompiled version see ``precompiled\`` directory, or compiled from source. Additional Python and R APIs can be found here: https://www.gitlab.ci.inf.usi.ch/SQUIC. Note, for all APIs, the shared library ``ibSQUIC.*`` is required.
+The shared library can be downloaded and used directly in a precompiled version, see [`precompiled/`]
+(precompiled/) directory, or compiled from source. Additionally a Python API can be found [here](https://www.
+gitlab.ci.inf.usi.ch/SQUIC/SQUIC_Python), and an R API [here](https://www.gitlab.ci.inf.usi.ch/SQUIC/
+SQUIC_R) . Note, for all APIs, the shared library ``libSQUIC.*`` is required.
+
+
+<p align="center">
+  <img align="middle" src="(https://drive.google.com/uc?id=14m72E-rGeM4dEBOfo6UGK6dAZ-n4Pnic)" alt="Location of samples" width="400"/>
+</p>
+<center>
+The optimized algorithmic components present in SQUIC.
+</center>
+
 
 ## Precompiled libSQUIC
-The simplest way to start using SQUIC is to use the precompiled shared library ``libSQUIC.*``. The precompiled distributions are listed in the folder ``precompiled/``. All distributions, are self-contained except for OpenMP, which needs to be installed. This can be done via a standard package manager; e.g., for Ubuntu: ``sudo apt-get install libomp-dev``, or  Mac: ``brew install libomp``. The shared libraryexposes a single function called ``SQUIC_CPP``, see ``include\SQUIC.h`` for further details. 
+The simplest way to start using SQUIC is to use the precompiled shared library ``libSQUIC.*``. The 
+precompiled distributions are listed in the folder [`precompiled/`](precompiled/). All distributions, are 
+self-contained except for OpenMP, which needs to be installed. This can be done via a standard package 
+manager; e.g., for Ubuntu: ``sudo apt-get install libomp-dev``, or  Mac: ``brew install libomp``. The shared 
+library exposes a single function called ``SQUIC_CPP``, see [`include\SQUIC.h`](include\SQUIC.h) for further details. 
 
 ## Compile from Source
-The shared library can be compiled from source by first fufilling the [Prerequisites](#Prerequisites) listed below and following the [Compilation & Instaation](#Compile&Install) instruction. 
+The shared library can be compiled from source by first fulfilling the [Prerequisites](#Prerequisites) listed below and following the [Compilation & Instaation](#Compile&Install) instruction. 
 
-### Prerequesits
+### Prerequisites
 
 For Mac:
 - CMake (>3.9): For example using homebrew ``brew install cmake``.
