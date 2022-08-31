@@ -7,7 +7,7 @@ The shared library can be used directly from the precompiled version see ``preco
 The simplest way to start using SQUIC is to use the precompiled shared library ``libSQUIC.*``. The precompiled distributions are listed in the folder ``precompiled/``. All distributions, are self-contained except for OpenMP, which needs to be installed. This can be done via a standard package manager; e.g., for Ubuntu: ``sudo apt-get install libomp-dev``, or  Mac: ``brew install libomp``. The shared libraryexposes a single function called ``SQUIC_CPP``, see ``include\SQUIC.h`` for further details. 
 
 ## Compile from Source
-The shared library can be compiled from source by first fufilling the [Prerequesits](#Prerequesits) listed below and following the [Compilation & Instaation](#Compile&Install) instruction. 
+The shared library can be compiled from source by first fufilling the [Prerequisites](#Prerequisites) listed below and following the [Compilation & Instaation](#Compile&Install) instruction. 
 
 ### Prerequesits
 
