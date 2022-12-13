@@ -31,6 +31,7 @@ For Mac:
 - Intel MKL libraries: [Download](https://software.intel.com/content/www/us/en/develop/tools/oneapi/base-toolkit/download.html?operatingsystem=mac&distributions=webdownload&options=online).
 - OpenMP.
 - C++/C Compilers (Clang): This is the default; nothing is required.
+- Fortran Compiler (gfortran).
 
 For Linux:
 - CMake (>3.9). 
