@@ -70,7 +70,7 @@ _Note: By default a dynamic library will be generated, if you want to generate a
 cmake command as follows: ``cmake ../ -DBUILD_SHARED_LIBS=OFF``_
 
 ##### Step 4
-Install the ``libSQUIC`` library (default location: ``~/``, use ``-DINSTALL_DIR`` to change it)
+Install the ``libSQUIC`` library (default location: ``~/``, add ``-DINSTALL_DIR=/my/path`` with the desired path to the cmake call above to customize it)
 using the command:
 
 ```angular2
