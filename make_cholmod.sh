@@ -8,6 +8,7 @@ CC=${1:-gcc}
 CXX=${2:-g++}
 
 INTEL_LIB=$MKLROOT
+INTEL_LIB=/usr/lib/x86_64-linux-gnu/
 
 
 if [ -z "$INTEL_LIB" ]

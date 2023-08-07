@@ -134,12 +134,24 @@ find_library(libmkl_gnu_thread_lib
 	NAMES libmkl_gnu_thread.a
 	PATHS ${MKL_DIR} ${MKL_DIR}/lib ${MKL_DIR}/mkl/lib ${MKL_DIR}/lib/intel64 
 	NO_DEFAULT_PATH
-) 
+	) 
+
+find_library(libmkl_blas95_ilp64_lib
+	NAMES libmkl_blas95_ilp64.a
+	PATHS ${MKL_DIR} ${MKL_DIR}/lib ${MKL_DIR}/mkl/lib ${MKL_DIR}/lib/intel64 
+	NO_DEFAULT_PATH
+	) 
+
+find_library(libmkl_lapack95_ilp64_lib
+	NAMES libmkl_lapack95_ilp64.a
+	PATHS ${MKL_DIR} ${MKL_DIR}/lib ${MKL_DIR}/mkl/lib ${MKL_DIR}/lib/intel64 
+	NO_DEFAULT_PATH
+	) 
 
 if(APPLE)
 	target_link_libraries(SQUIC PRIVATE  ${libmkl_intel_ilp64_lib} ${libmkl_intel_thread_lib} ${libmkl_core_lib})
 elseif(UNIX AND NOT APPLE)
-	target_link_libraries(SQUIC PRIVATE  ${MKL_DIR}/lib/intel64/libmkl_blas95_ilp64.a ${MKL_DIR}/lib/intel64/libmkl_lapack95_ilp64.a  ${MKL_DIR}/lib/intel64/libmkl_lapack95_ilp64.a -Wl,--start-group ${libmkl_intel_ilp64_lib} ${libmkl_gnu_thread_lib} ${libmkl_core_lib} -Wl,--end-group)
+	target_link_libraries(SQUIC PRIVATE  ${libmkl_blas95_ilp64_lib} ${libmkl_lapack95_ilp64_lib} ${libmkl_lapack95_ilp64_lib} -Wl,--start-group ${libmkl_intel_ilp64_lib} ${libmkl_gnu_thread_lib} ${libmkl_core_lib} -Wl,--end-group)
 else()
     message(FATAL_ERROR "Operating system not supported.")
 endif()
