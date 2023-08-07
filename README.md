@@ -1,3 +1,5 @@
+**Forked from: [SQUIC/libSQUIC](https://www.gitlab.ci.inf.usi.ch/SQUIC/libSQUIC).**
+
 # Sparse QUadratic Inverse Covariance matrix estimation (SQUIC)
 This repository contains the official code for SQUIC, a second-order $`\ell_1`$-regularized maximum likelihood method 
 for performant large-scale sparse precision matrix estimation. The code is packaged as the shared library 
