@@ -296,7 +296,7 @@ void SQUIC::run_core(double Lambda, double drop_tol, int maxIter, double term_to
 	integer max_lineiter = MAX_LINEITR;
 	double fX = 1e+15;
 	double fX1 = 1e+15;
-	double fXprev = 1e+15, subgrad;
+	double fXprev = 1e+15, subgrad, full_subgrad;
 	double sigma = 0.001;
 	integer i, j, k, l, m, r, s, t, max_loop = MAX_LOOP, SX, flagld = 0;
 	integer *idx, *idxpos;
@@ -520,6 +520,7 @@ void SQUIC::run_core(double Lambda, double drop_tol, int maxIter, double term_to
 		double diffD = 0.0;
 		// tentative norm ~ |grad g|
 		subgrad = 1e+15;
+		full_subgrad = 1e+15;
 
 		// initial step and diagonal initial inverse covariance matrix X
 		if (NewtonIter == 1 && IsDiag(&X)) {
@@ -594,6 +595,7 @@ void SQUIC::run_core(double Lambda, double drop_tol, int maxIter, double term_to
 			integer nz = 0;
 			// |grad g|_1
 			subgrad = 0.0;
+			full_subgrad = 0.0;
 
 			// compute active set I_free whenever X_ij!=0 or |S_ij-W_ij|>Lambda
 			// To do so, scan S, X and W
@@ -679,6 +681,8 @@ void SQUIC::run_core(double Lambda, double drop_tol, int maxIter, double term_to
 							} // end if-else RunTimeConfig.off_diagonal
 
 							subgrad += fabs(g);
+							full_subgrad += fabs(g);
+							full_subgrad += (i != j) * fabs(g);
 
 							// use sub gradient contribution as alternative weight
 							activeSetweight2[numActive] = fabs(g);
@@ -1011,6 +1015,12 @@ void SQUIC::run_core(double Lambda, double drop_tol, int maxIter, double term_to
 		//MSG("nnz(X)/p=%8.1le\n", double(X.nnz) / double(p));
 		//fflush(stdout);
 
+		if (full_subgrad * Lambda < l1normX * term_tol)
+		{
+			Stat.time_total += omp_get_wtime();
+			NewtonIter--;
+			break;
+		}
 		/////////////////////////
 		// Line Search
 		// Factorization
@@ -1482,11 +1492,12 @@ void SQUIC::run_core(double Lambda, double drop_tol, int maxIter, double term_to
 		current_drop_tol = MAX(current_drop_tol, drop_tol);
 		current_drop_tol = MIN(MAX(DROP_TOL0, drop_tol), current_drop_tol);
 		//if (subgrad * alpha >= l1normX * term_tol && (fabs((fX - fXprev) / fX) >= EPS))
-		if (fabs((fX - fXprev) / fX) >= term_tol) {
-			continue;
-		}
+		//if (fabs((fX - fXprev) / fX) >= term_tol) {
+		//	continue;
+		//}
 
-		break;
+		//break;
+		continue;
 	} // end for(; NewtonIter < maxNewtonIter; .....
 
 	opt = fX;
@@ -1578,14 +1589,15 @@ void SQUIC::run_core(double Lambda, double drop_tol, int maxIter, double term_to
 
 
 
-	Stat.time_total += omp_get_wtime();
+	if (Stat.time_total < 0) Stat.time_total += omp_get_wtime();
 
 	if (RunTimeConfig.verbose > 0) {
 		MSG("#SQUIC Finished: time=%0.2e nnz(X,W)/p=[%0.2e %0.2e] \n\n",  Stat.time_total, double(X.nnz) / double(p), double(W.nnz) / double(p));
 		fflush(stdout);
 	}
 	if (RunTimeConfig.verbose == 0) {
-		MSG("time=%0.2e nnz(X,W)/p=[%0.2e %0.2e] \n",  Stat.time_total, double(X.nnz) / double(p), double(W.nnz) / double(p));
+		MSG("Iter %d: time=%0.2e nnz(X,W)/p=[%0.2e %0.2e] \n",  NewtonIter, Stat.time_total, double(X.nnz) / double(p), double(W.nnz) / double(p));
+		MSG("GLASSO_ITER%dGLASSO_ITERGLASSO_TIME%0.6fGLASSO_TIME\n",  NewtonIter, Stat.time_total);
 		fflush(stdout);
 	}
 
